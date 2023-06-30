@@ -5,7 +5,7 @@ import { AddToCart } from "../redux/cart/action";
 
 const Products = () => {
   const { products } = useSelector((state) => state.product);
-  const { cart } = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state.ShoppingCart);
   const dispatch = useDispatch();
   function handleCart(product) {
         dispatch(AddToCart(product))
@@ -14,7 +14,7 @@ const Products = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  console.log(cart);
+  //console.log(cart);
 
   return (
     <div className="container">

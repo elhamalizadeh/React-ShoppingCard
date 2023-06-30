@@ -31,6 +31,11 @@ const Header = () => {
                   Products
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/cart">
+                  Cart
+                </NavLink>
+              </li>
               <li className="nav-item dropdown">
                 <NavLink
                   className="nav-link dropdown-toggle"
