@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Increment, Decrement , DeleteProduct , ClearCart} from '../redux/cart/action'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const ShoppingCart = () => {
   const { cart } = useSelector((state) => state.ShoppingCart);
+  //const { cart } = JSON.parse(localStorage.getItem("cart"));
   const dispatch = useDispatch();
 
   const handleIncrement = (productId)=>{
@@ -28,7 +29,7 @@ dispatch(Increment(productId))
           <div className="col-md-12 text-center">
         <i className="bi bi-basket-fill" style={{ fontSize:'100px' }}></i>
         <h2>Cart is Empty</h2>
-        <Link to="/products" className="btn btn-primary">Products</Link>
+        <NavLink to="/products" className="btn btn-primary">Products</NavLink>
         </div>
         ): (
         <div className="col-lg-12 pl-3 pt-3">
@@ -44,7 +45,7 @@ dispatch(Increment(productId))
               </thead>
               <tbody>
               {cart && cart.map(product => (
-                  <tr>
+                  <tr key={product.id}>
                     <td className="align-middle">
                         <div className="row" >
                             <div className="col-lg-2">
