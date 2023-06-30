@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Increment, Decrement } from '../redux/cart/action'
-
+import { Increment, Decrement , DeleteProduct , ClearCart} from '../redux/cart/action'
+import { Link } from "react-router-dom";
 const ShoppingCart = () => {
   const { cart } = useSelector((state) => state.ShoppingCart);
   const dispatch = useDispatch();
@@ -9,13 +9,28 @@ const ShoppingCart = () => {
 dispatch(Increment(productId))
   }
 
-  const handleDecrement=(productId)=>{
+  const handleDecrement = (productId)=>{
     dispatch(Decrement(productId))
+  }
+
+  const handleDelete = (productId) =>{
+     dispatch(DeleteProduct(productId))
+  }
+
+  const handleClearCart=()=>{
+    dispatch(ClearCart())
   }
 
   return (
     <div className="container">
       <div className="row">
+        {cart.length === 0 ? (
+          <div className="col-md-12 text-center">
+        <i className="bi bi-basket-fill" style={{ fontSize:'100px' }}></i>
+        <h2>Cart is Empty</h2>
+        <Link to="/products" className="btn btn-primary">Products</Link>
+        </div>
+        ): (
         <div className="col-lg-12 pl-3 pt-3">
           <table className="table table-hover">
             <thead>
@@ -43,16 +58,16 @@ dispatch(Increment(productId))
                     </td>
                     <td className="align-middle">{product.price}</td>
                     <td className="align-middle">
-                        <button onClick={()=>handleIncrement(product.id)}className="btn btn-sm btn-dark me-2">+</button>
+                        <button onClick={()=>handleIncrement(product.id)} className="btn btn-sm btn-dark me-2">+</button>
                         {product.qty}
                         <button onClick={()=>handleDecrement(product.id)} className="btn btn-sm btn-dark ms-2">-</button></td>
                     <td className="align-middle">{product.price * product.qty}</td>
-                    <td className="align-middle"><button className="btn btn-danger" >Delete</button></td>
+                    <td className="align-middle"><button onClick={()=>handleDelete(product.id)} className="btn btn-danger" >Delete</button></td>
                   </tr>
                 ))}
 
                 <tr>
-                    <td className="align-middle"><button className="btn btn-dark">Clear Cart</button></td>
+                    <td className="align-middle"><button onClick={()=>handleClearCart()} className="btn btn-dark">Clear Cart</button></td>
                     <td></td>
                     <td></td>
                     <td className="hidden-xs text-center" style={{ width:'15%' }}><strong>Total : { cart.reduce((total,product) => {
@@ -63,6 +78,7 @@ dispatch(Increment(productId))
             </tbody>
           </table>
         </div>
+        )}
       </div>
     </div>
   );
