@@ -36,6 +36,11 @@ const Header = () => {
                   Cart
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/about">
+                  About
+                </NavLink>
+              </li>
               <li className="nav-item dropdown">
                 <NavLink
                   className="nav-link dropdown-toggle"
@@ -68,7 +73,7 @@ const Header = () => {
                 </ul>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            <form className="d-flex" role="search" >
               <input
                 className="form-control me-2"
                 type="search"

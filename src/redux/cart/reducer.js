@@ -50,7 +50,6 @@ const cartReducer = (state = initialState , action) =>{
                     }
 
                 case CLEARCART:
-                    //state.cart = state.cart.clear()
                     //state.cart = localStorage.clear();
                     updateLocalStorage([])
                     return{

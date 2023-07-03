@@ -1,6 +1,5 @@
 import { ADD_TO_CART , INCREMENT , DECREMENT , DELETEPRODUCT , CLEARCART} from './actionType';
 
-
 export const AddToCart = (product) =>{
     return{
         type: ADD_TO_CART ,
