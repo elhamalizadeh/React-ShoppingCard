@@ -3,8 +3,7 @@ import { Box, Typography } from "@mui/material";
 const Rightbar = () =>{
     return(
         <>
-        <Box sx={{ width:"30%" , backgroundColor:"pink" , color:"blue"}}>
-            <Typography variant="h3">Right Bar</Typography>
+        <Box flex={2} p={2} sx={{ display:{ xs:"none" , sm:"block"} ,backgroundColor:"pink" , color:"blue"}} >
         </Box>
         
         </>

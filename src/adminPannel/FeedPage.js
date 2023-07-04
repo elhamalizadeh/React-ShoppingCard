@@ -3,8 +3,9 @@ import Post from "./Post";
 
 const FeedPage = () =>{
     return(
-        <Box sx={{ width:"30%" }}>
-          <h1>FeedPage</h1>
+        <Box flex={4} p={2} >
+          <Post />
+          <Post />
           <Post />
         </Box>
     )
