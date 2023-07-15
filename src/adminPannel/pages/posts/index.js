@@ -5,6 +5,7 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
+  createTheme
 } from "@mui/material";
 import { Button } from "@material-ui/core";
 import Navbar from "../../Navbar";
@@ -18,6 +19,7 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 //import Button from "@mui/material/Button";
 import * as React from "react";
 import { useState } from "react";
+import Sidebar from "../../Sidebar";
 
 const Posts = () => {
   const [category, setCategory] = React.useState("");
@@ -56,15 +58,20 @@ const Posts = () => {
     "world",
     "all",
   ];
-
-  console.log("category is " ,category);
-
+  const [mode, setMode] = useState("light");
+  const darkTheme = createTheme({
+    palette:{
+      mode: mode
+    }
+  })
   return (
     <>
       <Box>
         <Navbar />
-        <Stack direction="row" spacing={2} sx={{ margin: 5 }}>
-          <Typography variant="h5">Posts Page</Typography>
+        <Stack direction="row" spacing={2}>
+        <Sidebar setMode={setMode} mode={mode}/>
+
+        <Stack flex={6} direction="row" spacing={2} sx={{ margin: 5 }}>
           <form>
             <TextField
               required
@@ -318,16 +325,19 @@ const Posts = () => {
                   </FormControl>
                 </Grid>
               </Box>
+
+              <Box>
+                <h4>category is : { category }</h4>
+                <h4>title is : { title }</h4>
+                <h4>Content is : { content }</h4>
+                <h4>url is : { url }</h4>
+                <h4>author is : { author }</h4>
+              </Box>
             </Paper>
           </React.Fragment>
         </Stack>
-      </Box>
-      <Box>
-        <h4>category is : { category }</h4>
-        <h4>title is : { title }</h4>
-        <h4>Content is : { content }</h4>
-        <h4>url is : { url }</h4>
-        <h4>author is : { author }</h4>
+
+        </Stack>
       </Box>
     </>
   );

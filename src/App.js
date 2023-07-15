@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
     <Provider store={store}>
-    <Header />
+    {/* <Header /> */}
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/products" element={<Products />}/>

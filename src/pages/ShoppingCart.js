@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Increment, Decrement , DeleteProduct , ClearCart} from '../redux/cart/action'
 import { NavLink } from "react-router-dom";
+import Header from "../components/Header";
 const ShoppingCart = () => {
   const { cart } = useSelector((state) => state.ShoppingCart);
   //const { cart } = JSON.parse(localStorage.getItem("cart"));
@@ -23,6 +24,8 @@ dispatch(Increment(productId))
   }
 
   return (
+    <>
+    <Header />
     <div className="container">
       <div className="row">
         {cart.length === 0 ? (
@@ -82,6 +85,8 @@ dispatch(Increment(productId))
         )}
       </div>
     </div>
+    </>
+   
   );
 };
 

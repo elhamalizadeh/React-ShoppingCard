@@ -4,12 +4,16 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/material/Button";
 import SendIcon from "@mui/material/Button";
 import { pink } from '@mui/material/colors';
+import Header from "../components/Header";
 
 const Home = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   return (
+    <>
+    <Header />
     <div className="container mt-5">
+      
       <Button variant="text">Text</Button>
       <Button variant="contained" color="success">
         Contained
@@ -54,6 +58,9 @@ const Home = () => {
         }}
       />
     </div>
+    
+    </>
+   
   );
 };
 

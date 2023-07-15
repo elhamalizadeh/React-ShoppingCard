@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/products/action";
 import { AddToCart } from "../redux/cart/action";
+import Header from "../components/Header";
 
 const Products = () => {
   const { products } = useSelector((state) => state.product);
@@ -17,7 +18,9 @@ const Products = () => {
   //console.log(cart);
 
   return (
-    <div className="container">
+    <>
+    <Header />
+    <div className="container"> 
         <div className="row mt-5 g-3">
             {products && products.map(product => (
                 <div className="col-md-3" key={product.id} >
@@ -40,6 +43,8 @@ const Products = () => {
             ))}
         </div>
     </div>
+    </>
+
 )
 };
 
