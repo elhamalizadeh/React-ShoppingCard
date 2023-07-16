@@ -24,6 +24,30 @@ const products = [
         image: "https://dkstatics-public.digikala.com/digikala-products/0cd4f3da296237fea369a0a7d2ef7807ce47b3aa_1683382372.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
         price: 700000,
         qty: 1
+    },
+    {
+        id:1004,
+        name:"mobile4" ,
+        description: "this is a mobile4",
+        image: "https://dkstatics-public.digikala.com/digikala-products/0cd4f3da296237fea369a0a7d2ef7807ce47b3aa_1683382372.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+        price: 700000,
+        qty: 1
+    },
+    {
+        id:1005,
+        name:"mobile5" ,
+        description: "this is a mobile5",
+        image: "https://dkstatics-public.digikala.com/digikala-products/0cd4f3da296237fea369a0a7d2ef7807ce47b3aa_1683382372.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+        price: 700000,
+        qty: 1
+    },
+    {
+        id:1006,
+        name:"mobile6" ,
+        description: "this is a mobile6",
+        image: "https://dkstatics-public.digikala.com/digikala-products/0cd4f3da296237fea369a0a7d2ef7807ce47b3aa_1683382372.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+        price: 700000,
+        qty: 1
     }
 
 ]

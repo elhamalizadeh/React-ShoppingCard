@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
-import Header from "./components/Header";
+//import Header from "./components/Header";
 import Products from "./pages/Products";
 import store from './redux/store';
 import {Provider} from 'react-redux';
@@ -13,6 +13,7 @@ import GroupsPage from "./adminPannel/pages/groups";
 import SettingPage from "./adminPannel/pages/setting";
 import Market from "./adminPannel/pages/market";
 import Friends from "./adminPannel/pages/friends";
+import SearchPage from "./pages/Search";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/admin/setting" element={<SettingPage />}/>
       <Route path="/admin/market" element={<Market />}/>
       <Route path="/admin/friends" element={<Friends />}/>
+      <Route path="/search" element={<SearchPage />}/>
     </Routes>
     </Provider>
     </BrowserRouter>
