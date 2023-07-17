@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Pets } from "@mui/icons-material";
 import { AppBar, Button, Typography, Toolbar, Box } from "@mui/material";
 import Header from "../components/Header";
+import SimpleMap from "../components/googleMap";
 
 const About = () => {
   const RedButton = styled(Button)({
@@ -64,6 +65,7 @@ const About = () => {
         Disabled
       </Button>
       <RedButton>RedButton</RedButton>
+      <SimpleMap />
     </>
   );
 };
