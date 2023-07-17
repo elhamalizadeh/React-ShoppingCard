@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/products/action";
 import { AddToCart } from "../redux/cart/action";
@@ -6,10 +6,79 @@ import Header from "../components/Header";
 import { Box, List, ListItemButton, ListItemIcon, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { ListItemText } from "@material-ui/core";
+import FilterBar from "../components/FilterBar";
+//import dayjs from "dayjs";
+
+
+// const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
+// const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
+// dayjs.extend(isSameOrBefore);
+// dayjs.extend(isSameOrAfter);
+
 
 const Products = () => {
+
   const { products } = useSelector((state) => state.product);
   const { cart } = useSelector((state) => state.ShoppingCart);
+
+const [allproducts, setproducts] = useState(products);
+//console.log("all is :", allproducts);
+
+  const generateColorDataForDropdown = () => {
+    return [...new Set(products.map((item)=>item.color ))]
+  };
+
+  const generateBrandDataForDropdown = () => {
+    return [...new Set(products.map((item)=>item.brand ))]
+  };
+  
+  const handleFilterName = (name) =>{
+    const filteredProducts = products.filter((item)=>{
+      if(item.name.toLowerCase().includes(name.toLowerCase())){
+        return item;
+      }
+    })
+    setproducts(filteredProducts)
+  }
+
+
+  const handleFilterBrand = (brand) =>{
+    const filteredProducts = products.filter((item)=>{
+      if(item.brand === brand){
+        return item;
+      }
+    })
+    setproducts(filteredProducts)
+  }
+
+
+  const handleFilterColor= (color) =>{
+    const filteredProducts = products.filter((item)=>{
+      if(item.color === color){
+        return item;
+      }
+    })
+    setproducts(filteredProducts)
+  }
+
+  const handleFilterFrom= (from) =>{
+    const filteredProducts = products.filter((item)=>{
+      if(item.from === from){
+        return item;
+      }
+    })
+    setproducts(filteredProducts)
+  }
+
+  const handleFilterTo= (to) =>{
+    const filteredProducts = products.filter((item)=>{
+      if(item.to === to){
+        return item;
+      }
+    })
+    setproducts(filteredProducts)
+  }
+
   const dispatch = useDispatch();
   function handleCart(product) {
         dispatch(AddToCart(product))
@@ -25,85 +94,22 @@ const Products = () => {
     <Header />
     <Box>
     <Stack direction="row" spacing={2}>
-    <Box flex={2} p={2} sx={{ display:{ xs:"none" , sm:"block"} }}>
-    <Box position="fixed">
-        <List>
-          <NavLink to="/admin" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              Home
-            </ListItemIcon>
-            <ListItemText primary="Homepege" />
-          </ListItemButton>
-          </NavLink>
+{/* ----------------------------------------------- */}
+<FilterBar colors={generateColorDataForDropdown()} 
+brands={ generateBrandDataForDropdown()} 
+onFilterName={handleFilterName}
+onFilterBrand={handleFilterBrand}
+onFilterColor={handleFilterColor}
+onFilterFrom={handleFilterFrom}
+onFilterTo={handleFilterTo}
 
-          <NavLink to="/admin/posts" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              Article
-            </ListItemIcon>
-            <ListItemText primary="Posts" />
-          </ListItemButton>
-          </NavLink>
+/>
 
-          <NavLink to="/admin/media" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              media
-            </ListItemIcon>
-            <ListItemText primary="Media" />
-          </ListItemButton>
-          </NavLink>
-
-          <NavLink to="/admin/groups" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              group
-            </ListItemIcon>
-            <ListItemText primary="Groups" />
-          </ListItemButton>
-          </NavLink>
-
-          <NavLink to="/admin/market" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              store
-            </ListItemIcon>
-            <ListItemText primary="Market Place" />
-          </ListItemButton>
-          </NavLink>
-
-          <NavLink to="/admin/friends" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              diversity
-            </ListItemIcon>
-            <ListItemText primary="Friends" />
-          </ListItemButton>
-          </NavLink>
-
-          <NavLink to="/admin/setting" className="nav-link">
-          <ListItemButton>
-            <ListItemIcon>
-              setting
-            </ListItemIcon>
-            <ListItemText primary="Setting" />
-          </ListItemButton>
-          </NavLink>
-
-          <ListItemButton>
-            <ListItemIcon>
-              light
-            </ListItemIcon>
-          </ListItemButton>
-        </List>
-        </Box>
-    </Box>
     {/* ----------------------------------- */}
     <Box flex={10} p={2} >
     <div className="container"> 
         <div className="row mt-5 g-3">
-            {products && products.map(product => (
+            {allproducts && allproducts.map(product => (
                 <div className="col-md-3" key={product.id} >
                     <div className="card">
                         <img className="card-img-top" src={product.image} alt="..." />
@@ -112,6 +118,10 @@ const Products = () => {
                             <p className="card-text">
                                 {product.description}
                             </p>
+                            <p className="card-text">color: {product.color}</p>
+                            <p className="card-text">date: {product.date}</p>
+                            { product.quantity? <p className="card-text">quantity: {product.quantity}</p> : <p className="text-danger">No quantity</p>}
+                            
                         </div>
                         <div className="card-footer d-flex justify-content-between">
                             <button onClick={()=>handleCart(product)}className="btn btn-sm btn-outline-success">
