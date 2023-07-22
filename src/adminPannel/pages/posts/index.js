@@ -20,37 +20,47 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import * as React from "react";
 import { useState } from "react";
 import Sidebar from "../../Sidebar";
+import { ThemeProvider } from "@emotion/react";
+
+
+function getFormValues() {
+	const storedValues = localStorage.getItem('form');
+	if (!storedValues)
+		return {
+			title: '',
+			content: '',
+			url: '',
+			author: '',
+      category:''
+		};
+	return JSON.parse(storedValues);
+}
+
 
 const Posts = () => {
-  const [category, setCategory] = React.useState("");
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
-  const [url, setUrl] = React.useState("");
-  const [author, setAuthor] = React.useState("");
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+const [values, setValues] = useState(getFormValues)
 
-  const handleChangeTitle = (event) => {
-    setTitle(event.target.value);
-  };
+React.useEffect(() => {
+  localStorage.setItem('form', JSON.stringify(values));
+}, [values]);
 
-  const handleChangeContent = (event) => {
-    setContent(event.target.value);
-  };
+function handleSubmit(event) {
+  event.preventDefault();
+  alert('An error occurred on the server. Please try again!!!');
+}
 
-  const handleChangeUrl = (event) => {
-    setUrl(event.target.value);
-  };
+function handleChange(event){
+  setValues((previousValues)=>({
+   ...previousValues ,
+  [event.target.name] : event.target.value
+  }))
+}
 
-  const handleChangeAuthor = (event) => {
-    setAuthor(event.target.value);
-  };
 
-  const saveInLocalStorage = (title) =>{
-    localStorage.setItem('form' , JSON.stringify(title))
-  }
+  // const handleChange = (event) => {
+  //   setCategory(event.target.value);
+  // };
 
   const categories = [
     "science",
@@ -62,6 +72,8 @@ const Posts = () => {
     "world",
     "all",
   ];
+
+
   const [mode, setMode] = useState("light");
   const darkTheme = createTheme({
     palette:{
@@ -70,13 +82,15 @@ const Posts = () => {
   })
   return (
     <>
-      <Box>
+        <ThemeProvider theme={darkTheme}>
+
+        <Box bgcolor={"background.default"} color={"text.primary"}>
         <Navbar />
         <Stack direction="row" spacing={2}>
         <Sidebar setMode={setMode} mode={mode}/>
 
         <Stack flex={6} direction="row" spacing={2} sx={{ margin: 5 }}>
-          <form>
+          {/* <form>
             <TextField
               required
               style={{ width: "200px", margin: "5px" }}
@@ -131,13 +145,13 @@ const Posts = () => {
             <Button variant="contained" color="primary">
               save
             </Button>
-          </form>
+          </form> */}
 
 
           {/*  ----------------Form 2------------------ */}
 
           <React.Fragment>
-            <form onSubmit={saveInLocalStorage}>
+            <form onSubmit={handleSubmit}>
             <Paper elevation={3} sx={{ marginRight: "15%", marginLeft: "15%" }}>
               <Box sx={{ padding: 5 }}>
                 <Typography variant="h6" gutterBottom sx={{ paddingBottom: 5 }}>
@@ -158,7 +172,6 @@ const Posts = () => {
                   </Grid>
                   <Grid item xs={12} sm={10}>
                     <TextField
-                      required
                       id="title"
                       name="title"
                       label="Title"
@@ -166,7 +179,9 @@ const Posts = () => {
                       size="small"
                       autoComplete="off"
                       variant="outlined"
-                      onChange={handleChangeTitle}
+                      // onChange={handleChangeTitle}
+                      onChange={handleChange}
+                      value={values.title}
                     />
                   </Grid>
 
@@ -186,11 +201,12 @@ const Posts = () => {
                     <TextField
                       id="outlined-multiline-static"
                       label="Content"
+                      name="content"
                       multiline
                       fullWidth
                       rows={4}
-                      onChange={handleChangeContent}
-
+                      onChange={handleChange}
+                      value={values.content}
                     />
                   </Grid>
 
@@ -216,7 +232,8 @@ const Posts = () => {
                       size="small"
                       autoComplete="off"
                       variant="outlined"
-                      onChange={handleChangeUrl}
+                      onChange={handleChange}
+                      value={values.url}
                     />
                   </Grid>
 
@@ -238,7 +255,8 @@ const Posts = () => {
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={category}
+                        name="category"
+                        value={values.category}
                         label="category"
                         onChange={handleChange}
                       >
@@ -273,7 +291,8 @@ const Posts = () => {
                       size="small"
                       autoComplete="off"
                       variant="outlined"
-                      onChange={handleChangeAuthor}
+                      onChange={handleChange}
+                      value={values.author}
                     />
                   </Grid>
 
@@ -299,7 +318,7 @@ const Posts = () => {
                   <Grid item xs={12} sm={6} />
                   <Grid item xs={12} sm={5} />
                   <Grid item xs={12} sm={4}>
-                    <Button variant="contained" sx={{ color: "#ff781f" }} >
+                    <Button variant="contained" sx={{ color: "#ff781f" }} type="submit">
                       Save
                     </Button>
                   </Grid>
@@ -310,19 +329,22 @@ const Posts = () => {
                 <Grid item xs={12} sm={5}>
                   <FormControl component="fieldset">
                   <FormControlLabel
-                      value="saturday"
+                  value={values.saturday}
+                      // value="saturday"
                       control={<Checkbox />}
                       label="saturday"
                       labelPlacement="bottom"
                     />
                     <FormControlLabel
-                      value="sunday"
+                    value={values.sunday}
+                      // value="sunday"
                       control={<Checkbox />}
                       label="sunday"
                       labelPlacement="bottom"
                     />
                      <FormControlLabel
-                      value="monday"
+                     value={values.monday}
+                      // value="monday"
                       control={<Checkbox />}
                       label="monday"
                       labelPlacement="bottom"
@@ -331,12 +353,12 @@ const Posts = () => {
                 </Grid>
               </Box>
 
-              <Box>
-                <h4>category is : { category }</h4>
-                <h4>title is : { title }</h4>
-                <h4>Content is : { content }</h4>
-                <h4>url is : { url }</h4>
-                <h4>author is : { author }</h4>
+              <Box sx={{ padding: 5 }}>
+                <h5>category is : { values.category }</h5>
+                <h5>title is : { values.title }</h5>
+                <h5>Content is : { values.content }</h5>
+                <h5>url is : { values.url }</h5>
+                <h5>author is : { values.author }</h5>
               </Box>
             </Paper>
             </form>
@@ -345,6 +367,9 @@ const Posts = () => {
 
         </Stack>
       </Box>
+
+      </ThemeProvider>
+
     </>
   );
 };

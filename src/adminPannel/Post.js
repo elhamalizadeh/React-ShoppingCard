@@ -16,8 +16,10 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ShareIcon from "@mui/icons-material/Share";
+import { useState } from "react";
 
 const Post = ({ post }) => {
+
   return (
     <article>
     <h2>{post.title}</h2>

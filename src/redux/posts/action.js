@@ -9,7 +9,13 @@ export const setPosts = (posts) =>{
 
 }
 
-// -----------------use axios in redux---------------
+export const setError = (err) =>{
+    return {
+        type: SET_ERROR ,
+        payload: err
+    }
+
+}
 
 export const fetchPosts = () => {
     return function(dispatch){
@@ -17,10 +23,9 @@ export const fetchPosts = () => {
         .then((res)=>res.json())
         .then((data)=>{
             dispatch(setPosts(data))
-            //dispatch(SET_ERROR(null))
             console.log(data)
         }).catch(err=>{
-             dispatch(SET_ERROR(err.message))
+             dispatch(setError(err.message))
             console.log("error dare")
         })
     }
