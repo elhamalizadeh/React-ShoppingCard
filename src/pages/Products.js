@@ -18,7 +18,7 @@ import FilterBar from "../components/FilterBar";
 
 const Products = () => {
 
-  const { products } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.products);
   const { cart } = useSelector((state) => state.ShoppingCart);
 
 const [allproducts, setproducts] = useState(products);

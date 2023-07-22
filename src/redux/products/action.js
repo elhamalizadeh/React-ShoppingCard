@@ -83,7 +83,7 @@ const products = [
         qty: 8,
         date: "2019-01-25",
         color: 'pink',
-        quantity: 0
+        quantity: 4
 
     }
 

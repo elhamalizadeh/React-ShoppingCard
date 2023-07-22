@@ -48,6 +48,10 @@ const Posts = () => {
     setAuthor(event.target.value);
   };
 
+  const saveInLocalStorage = (title) =>{
+    localStorage.setItem('form' , JSON.stringify(title))
+  }
+
   const categories = [
     "science",
     "sports",
@@ -133,10 +137,11 @@ const Posts = () => {
           {/*  ----------------Form 2------------------ */}
 
           <React.Fragment>
+            <form onSubmit={saveInLocalStorage}>
             <Paper elevation={3} sx={{ marginRight: "15%", marginLeft: "15%" }}>
               <Box sx={{ padding: 5 }}>
                 <Typography variant="h6" gutterBottom sx={{ paddingBottom: 5 }}>
-                  Krunch Media
+                  New Post
                 </Typography>
                 <Grid container spacing={3}>
                 {/*  ----------------Title------------------ */}
@@ -294,7 +299,7 @@ const Posts = () => {
                   <Grid item xs={12} sm={6} />
                   <Grid item xs={12} sm={5} />
                   <Grid item xs={12} sm={4}>
-                    <Button variant="contained" sx={{ color: "#ff781f" }}>
+                    <Button variant="contained" sx={{ color: "#ff781f" }} >
                       Save
                     </Button>
                   </Grid>
@@ -334,6 +339,7 @@ const Posts = () => {
                 <h4>author is : { author }</h4>
               </Box>
             </Paper>
+            </form>
           </React.Fragment>
         </Stack>
 
