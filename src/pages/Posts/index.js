@@ -1,9 +1,10 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, setPosts } from "../redux/posts/action";
+import { fetchPosts, setPosts } from "../../redux/posts/action";
 //import { getPosts } from "../adminPannel/api/axios";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const FrontPosts = () => {
   const { posts } = useSelector((state) => state.posts);
@@ -26,8 +27,11 @@ const FrontPosts = () => {
                         <div className="col-md-3" key={post.id} >
                         <div className="card">
                         <div className="card-body">
-                    <h5>{post.title}</h5>
+                    <h5>{post.id}-{post.title}</h5>
                     </div>
+                    <Link to={`${post.id}`}>
+                    <button className="btn btn-primary">read more</button>
+                    </Link>
                     </div></div>
                     )
                     

@@ -15,6 +15,7 @@ import Market from "./adminPannel/pages/market";
 import Friends from "./adminPannel/pages/friends";
 import SearchPage from "./pages/Search";
 import FrontPosts from "./pages/Posts";
+import ShowPost from "./pages/Posts/[id]";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/posts" element={<FrontPosts />}/>
+      <Route path="/posts/:id" element={<ShowPost />}/>
       <Route path="/products" element={<Products />}/>
       <Route path="/cart" element={<ShoppingCart />}/>
       <Route path="/about" element={<About />}/>

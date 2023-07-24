@@ -181,7 +181,7 @@ function handleChange(event){
                       variant="outlined"
                       // onChange={handleChangeTitle}
                       onChange={handleChange}
-                      value={values.title}
+                      //value={values.title}
                     />
                   </Grid>
 
