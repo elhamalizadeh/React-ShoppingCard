@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import DeletePost from "../pages/posts/delete";
 
 const Posts = ({ posts, loading }) => {
   if (loading) {
@@ -44,7 +45,8 @@ const Posts = ({ posts, loading }) => {
                       Edit
                     </button>
                   </Link>
-                  <button className="btn btn-danger btn-sm">Delete</button>
+                  <DeletePost postId={post.id}/>
+                  {/* <button className="btn btn-danger btn-sm">Delete</button> */}
                 </TableCell>
               </TableRow>
             ))}

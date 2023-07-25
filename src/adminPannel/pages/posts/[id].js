@@ -70,7 +70,7 @@ const ShowPostAdminPanel = () => {
         id: 1,
         title: event.target.title.value,
         body: event.target.body.value,
-        userId: 1,
+        userId: event.target.author.value,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -78,7 +78,7 @@ const ShowPostAdminPanel = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("title is:", post.title, "body is:", post.body);
+        console.log("title is:", values.title, "<br/>body is:",values.body , "<br/>author is:",values.author);
         setLoading(false);
         setError(null);
         Swal.fire({
