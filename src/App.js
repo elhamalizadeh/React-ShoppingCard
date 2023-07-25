@@ -32,7 +32,7 @@ function App() {
       <Route path="/about" element={<About />}/>
       <Route path="/admin" element={<AdminPage />}/>
       <Route path="/admin/posts" element={<Posts />}/>
-      <Route path="/admin/posts/:id" element={<ShowPostAdminPanel />}/>
+      <Route path="/admin/posts/edit/:id" element={<ShowPostAdminPanel />}/>
       <Route path="/admin/media" element={<Media />}/>
       <Route path="/admin/groups" element={<GroupsPage />}/>
       <Route path="/admin/setting" element={<SettingPage />}/>

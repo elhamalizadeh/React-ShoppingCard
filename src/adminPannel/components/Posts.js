@@ -39,11 +39,12 @@ const Posts = ({ posts, loading }) => {
                   {post.title}
                 </TableCell>
                 <TableCell align="center">
-                  <Link to={`${post.id}`}>
-                    <button className="btn btn-outline-primary btn-sm">
-                      read more
+                  <Link to={`edit/${post.id}`}>
+                    <button className="btn btn-outline-primary btn-sm me-2">
+                      Edit
                     </button>
                   </Link>
+                  <button className="btn btn-danger btn-sm">Delete</button>
                 </TableCell>
               </TableRow>
             ))}
